@@ -30,7 +30,6 @@
         else
         {
             Console.WriteLine("-1");
-            Console.WriteLine("Hello, world!");
         }
     }
 }
