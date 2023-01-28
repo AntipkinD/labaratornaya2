@@ -32,5 +32,6 @@
                 $"\nЭто: {MultipleTwo} и {MultipleSeven}");
         if (result != MultipleFourteen)
             Console.WriteLine(-1);
+        Console.WriteLine("hello, world");
     }
 }
