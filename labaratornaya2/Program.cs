@@ -1,35 +1,36 @@
-﻿class Program
+﻿internal class Program
 {
-    static void Main(string[] args)
+    const int multipleOfThisNumber = 14, maxArrayLength = 1000, maxValueInArray = 10000;
+    private static void Main(string[] args)
     {
-        int max = 0;
-        int max14 = 0;
-        int max2 = 0;
-        int max7 = 0;
-        Random randm = new Random();
-        int[] array = new int[1000];
+        int[] array = new int[maxArrayLength];
+
+        Random r = new();
         for (int i = 0; i < array.Length; i++)
-            array[i] = randm.Next(28, 29);
+            array[i] = r.Next(0, maxValueInArray);
+
+        int max = 0, MultipleTwo = 0, MultipleSeven = 0, MultipleFourteen = 1, result = 0;
         for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] % 14 == 0 && array[i] > max14) max14 = array[i];
-
-            if (array[i] % 2 == 0 && array[i] > max2) max2 = array[i];
-
-            if (array[i] % 7 == 0 && array[i] > max7) max7 = array[i];
-
             if (array[i] > max) max = array[i];
-        }
-        if (max14 > max7 && max14 > max2 && max14 > max &&
-            max2 > max14 && max2 > max7 && max2 > max &&
-            max7 > max14 && max7 > max2 && max7 > max &&
-            max > max14 && max > max2 && max > max7)
+
+        foreach (int i in array)
         {
-            Console.WriteLine("есть");
+            if (i % multipleOfThisNumber == 0 && i > MultipleFourteen) MultipleFourteen = i;
+
+            if (i % 2 == 0) MultipleTwo = i;
+
+            if (i % 7 == 0) MultipleSeven = i;
+
+            result = MultipleTwo * MultipleSeven;
+
+            if (result == MultipleFourteen) break;
         }
-        else
-        {
-            Console.WriteLine("-1");
-        }
+
+        if (result == MultipleFourteen && max == MultipleFourteen)
+            Console.WriteLine($"{max} - это число соответсвует условиям задачи." +
+                $"\nОно кратно 14, а также является произведением двух других различных элементов последовательности." +
+                $"\nЭто: {MultipleTwo} и {MultipleSeven}");
+        if (result != MultipleFourteen)
+            Console.WriteLine(-1);
     }
 }
